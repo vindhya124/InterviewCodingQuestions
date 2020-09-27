@@ -11,6 +11,12 @@ namespace InterviewCodingQuestions
 
             var inputArray = new int[] {10, 20, 30, 40, 50};
             ReverseArray(inputArray);
+
+            foreach (var test in GetTestCases())
+            {
+                var result = Anagram.IsAnagramPair(test.First, test.Second);
+                Console.WriteLine((result == test.Expected) ? "Success" : "FAIL");
+            }
         }
 
         private static void ReverseArray(int[] inputArray)
@@ -29,6 +35,14 @@ namespace InterviewCodingQuestions
 
             }
             foreach (var item in inputArray) Console.WriteLine($"After reversing array {item}");
+        }
+        public static IEnumerable<TestCase> GetTestCases()
+        {
+            yield return new TestCase { First = "add", Second = "dad", Expected = true };
+            yield return new TestCase { First = "aad", Second = "dad", Expected = false };
+            yield return new TestCase { First = "Astronomer", Second = "Moon starer", Expected = true };
+            yield return new TestCase { First = "thorough", Second = "through", Expected = false };
+            yield return new TestCase { First = "Jim Morrison", Second = "Mr. Mojo Risin'", Expected = true };
         }
     }
 }
